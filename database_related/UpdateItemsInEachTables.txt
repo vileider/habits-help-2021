@@ -1,0 +1,32 @@
+conn.query('UPDATE Users SET first_name, last_name', function(err, data){
+if (err) console.log(err);
+
+    console.log(data);
+    dbdata = data;
+
+    conn.close(function() {
+      console.log('Done OK');
+    });
+ });
+
+conn.query('UPDATE Habits SET type, description', function(err, data){
+if (err) console.log(err);
+
+    console.log(data);
+    dbdata = data;
+
+    conn.close(function() {
+      console.log('Done OK');
+    });
+ });
+
+conn.query('UPDATE Successes SET date, description', function(err, data){
+if (err) console.log(err);
+
+    console.log(data);
+    dbdata = data;
+
+    conn.close(function() {
+      console.log('Done OK');
+    });
+ });

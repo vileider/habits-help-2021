@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <title>IBM endpoint check</title>
+  </head>
+  <body>
+    <div>
+      <input
+        type="radio"
+        id="habits"
+        name="endpoint"
+        onchange="ChangeEndpointTypeOnRadiochange(value)"
+        value="habits"
+      />
+      <label for="habits">habits</label>
+      <input
+        type="radio"
+        id="users"
+        name="endpoint"
+        onchange="ChangeEndpointTypeOnRadiochange(value)"
+        value="users"
+      />
+      <label for="users">users</label>
+      <input
+        type="radio"
+        id="success"
+        name="endpoint"
+        onchange="ChangeEndpointTypeOnRadiochange(value)"
+        value="success"
+      />
+      <label for="users">success</label>
+    </div>
+    <button id="give-data" onclick="showDatabaseData()" disabled>
+      give me data from endpoint
+    </button>
+    <div id="endpointString"></div>
+    <p id="p"></p>
+  </body>
+  <script>
+    const enableGiveDataButton = () => {
+      document.getElementById("give-data").disabled = false;
+    };
+    const ChangeEndpointTypeOnRadiochange = (value) => {
+      document.getElementById("endpointString").textContent =
+        `https://habitshelp.eu-gb.mybluemix.net/` + value;
+      enableGiveDataButton();
+    };
+
+    const addTextToBody = (text = "randomText") => {
+      document.getElementById("p").textContent = text;
+    };
+
+    const bringDataFromDAtabase = async () => {
+      const response = await fetch(
+        document.getElementById("endpointString").innerHTML,
+        {
+          method: "GET",
+        }
+      );
+      return response.json();
+    };
+
+    const showDatabaseData = () => {
+      bringDataFromDAtabase().then((value) =>
+        addTextToBody(JSON.stringify(value))
+      );
+    };
+  </script>
+</html>

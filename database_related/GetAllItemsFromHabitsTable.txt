@@ -1,0 +1,10 @@
+conn.query('SELECT COUNT(*) FROM Habits', function(err, data){
+if (err) console.log(err);
+
+    console.log(data);
+    dbdata = data;
+
+    conn.close(function() {
+      console.log('Done OK');
+    });
+ });

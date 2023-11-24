@@ -1,0 +1,32 @@
+conn.query('INSERT INTO Users (first_name, last_name)', function(err, data){
+if (err) console.log(err);
+
+    console.log(data);
+    dbdata = data;
+
+    conn.close(function() {
+      console.log('Done OK');
+    });
+ });
+
+conn.query('INSERT INTO Habits (type, description)', function(err, data){
+if (err) console.log(err);
+
+    console.log(data);
+    dbdata = data;
+
+    conn.close(function() {
+      console.log('Done OK');
+    });
+ });
+
+conn.query('INSERT INTO Successes (date, description)', function(err, data){
+if (err) console.log(err);
+
+    console.log(data);
+    dbdata = data;
+
+    conn.close(function() {
+      console.log('Done OK');
+    });
+ });

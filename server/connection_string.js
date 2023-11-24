@@ -1,0 +1,2 @@
+const connectionString ='DATABASE=bludb;database=sample;hostname=824dfd4d-99de-440d-9991-629c01b3832d.bs2io90l08kqb1od8lcg.databases.appdomain.cloud;port=30119;uid=cth10382;pwd=yvmVccDwO81zhmLb;PROTOCOL=TCPIP;SECURITY=SSL';
+exports.connStr = connectionString;

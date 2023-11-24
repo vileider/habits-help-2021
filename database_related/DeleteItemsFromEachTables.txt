@@ -1,0 +1,32 @@
+conn.query('DELETE FROM Users WHERE first_name, last_name', function(err, data){
+if (err) console.log(err);
+
+    console.log(data);
+    dbdata = data;
+
+    conn.close(function() {
+      console.log('Done OK');
+    });
+ });
+
+conn.query('DELETE FROM Habits WHERE type, description', function(err, data){
+if (err) console.log(err);
+
+    console.log(data);
+    dbdata = data;
+
+    conn.close(function() {
+      console.log('Done OK');
+    });
+ });
+
+conn.query('DELETE FROM Successes WHERE date, description', function(err, data){
+if (err) console.log(err);
+
+    console.log(data);
+    dbdata = data;
+
+    conn.close(function() {
+      console.log('Done OK');
+    });
+ });

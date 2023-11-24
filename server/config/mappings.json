@@ -1,0 +1,23 @@
+{
+  "application_name": {
+    "searchPatterns": [
+      "cloudfoundry:$.application_name",
+      "env:K_SERVICE"
+    ]
+  },
+  "db2OnCloud_connection": {
+    "searchPatterns": [
+      "file:/server/localdev-config.json:$.db2OnCloud_connection"
+    ]
+  },
+  "db2OnCloud_instance_administration_api": {
+    "searchPatterns": [
+      "file:/server/localdev-config.json:$.db2OnCloud_instance_administration_api"
+    ]
+  },
+  "db2OnCloud_serviceInfo": {
+    "searchPatterns": [
+      "file:/server/localdev-config.json:$.db2OnCloud_serviceInfo"
+    ]
+  }
+}

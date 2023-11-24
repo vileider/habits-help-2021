@@ -1,0 +1,76 @@
+/* eslint-disable max-len */
+// import dependencies and initialize express
+require('dotenv').config();
+const express = require('express');
+const path = require('path');
+const bodyParser = require('body-parser');
+const ibmdb = require('ibm_db');
+var dbdata;
+
+
+const app = express();
+
+// eslint-disable-next-line max-len
+ibmdb.open('DATABASE=bludb;database=sample;hostname=824dfd4d-99de-440d-9991-629c01b3832d.bs2io90l08kqb1od8lcg.databases.appdomain.cloud;port=30119;uid=cth10382;pwd=yvmVccDwO81zhmLb;PROTOCOL=TCPIP;SECURITY=SSL', function(err, conn){
+  if (err)
+    return console.log(err);
+
+  console.log('ibmdb success');
+
+  // eslint-disable-next-line max-len
+  conn.query('SELECT * FROM Habits', function(err, data) {
+
+    if (err) console.log(err);
+
+    console.log(data);
+    dbdata = data;
+
+    conn.close(function() {
+      console.log('Done OK');
+    });
+
+  });
+
+
+});
+
+// enable parsing of http request body
+app.use(bodyParser.urlencoded({
+  extended: false,
+}));
+app.use(bodyParser.json());
+
+// routes and api calls
+// app.use('/health', healthRoutes);
+// app.use('/swagger', swaggerRoutes);
+
+// default path to serve up index.html (single page application)
+// app.all('', (req, res) => {
+//   res.status(200).sendFile(path.join(__dirname, '../public', 'index.html'));
+// });
+
+// simple route
+// app.get('/', (req, res) => {
+//   res.json({ message: 'Welcome to Habits Help API.' + dbdata});
+// });
+
+
+// start node server
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`API running http://localhost:${port}`);
+});
+
+app.get('/', (req, res) => {
+  res.json({
+    dbdata,
+  });
+});
+
+
+// error handler for unmatched routes or api calls
+app.use((req, res, next) => {
+  res.sendFile(path.join(__dirname, '../public', '404.html'));
+});
+
+module.exports = app;
